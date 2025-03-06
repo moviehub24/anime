@@ -36,18 +36,24 @@
         }
 
         const animeParam = getQueryParam("anime");
+        const userId = getQueryParam("userId"); // Capture user ID
+        const telegramBotUsername = "data1storage_bot";  // Your bot username
+
         if (animeParam) {
             document.getElementById("animeTitle").textContent = `Selected: ${animeParam.replace(/_/g, " ")}`;
             
-            const telegramBotUsername = "data1storage_bot";  // Your bot username
+            // Generate quality selection links
             document.getElementById("btn480p").href = `https://t.me/${telegramBotUsername}?start=${encodeURIComponent(animeParam + "_480p")}`;
             document.getElementById("btn720p").href = `https://t.me/${telegramBotUsername}?start=${encodeURIComponent(animeParam + "_720p")}`;
             document.getElementById("btn1080p").href = `https://t.me/${telegramBotUsername}?start=${encodeURIComponent(animeParam + "_1080p")}`;
 
+            // Image handling
             const imageUrl = `${animeParam}.jpeg`;
             const imgElement = document.getElementById("animeImg");
             imgElement.src = imageUrl;
             imgElement.onerror = function() { imgElement.src = "placeholder.jpeg"; };
+        } else {
+            document.getElementById("animeTitle").textContent = "❌ No anime selected!";
         }
 
         let timeLeft = 10;
