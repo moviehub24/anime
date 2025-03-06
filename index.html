@@ -34,7 +34,7 @@
         // Extract userId and movie name from URL parameters
         const urlParams = new URLSearchParams(window.location.search);
         const userId = urlParams.get("userId");
-        const movie = urlParams.get("movie");
+        const movie = urlParams.get("anime");
 
         if (!userId || !movie) {
             document.body.innerHTML = "<h2>Error: Missing parameters!</h2>";
