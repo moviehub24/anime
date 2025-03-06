@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Quality Selection</title>
+    <title>Anime Quality Selection</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; flex-direction: column; min-height: 100vh; background-color: #f4f4f4; margin: 0; padding: 20px; overflow-y: auto; scroll-behavior: smooth; }
         .container { max-width: 500px; width: 100%; background-color: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: flex-start; }
@@ -19,13 +19,19 @@
         .timer-container { margin-top: 20px; text-align: center; }
         #timer { font-size: 2em; color: #007bff; font-weight: bold; }
         .timer-text { color: #777; margin-top: 5px; }
+        .bottom-text { text-align: center; margin-top: 30px; color: #555; font-size: 1.1em; }
+        .social-bar-ad {
+            text-align: center;
+            margin-top: 20px;
+            cursor: pointer; /* Makes it look clickable */
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <p class="scroll-prompt">Scroll down to select quality</p>
-        <img id="img" src="placeholder.jpeg" alt="Movie Poster" loading="lazy">
-        <h2>Select Movie Quality</h2>
+        <img id="img" src="placeholder.jpeg" alt="Anime Poster" loading="lazy">
+        <h2>Select Anime Quality</h2>
 
         <div class="timer-container">
             <div id="timer">10</div>
@@ -55,6 +61,12 @@
         </div>
         <div class="ad-container">
             <iframe loading="lazy" src="https://moviehub24.github.io/ads/" scrolling="no" width="350px" height="300px"></iframe>
+        </div>
+
+        <div class="social-bar-ad" onclick="loadSocialBarAd()">Click here for social bar ads.</div>
+
+        <div class="bottom-text">
+            The quality selection buttons are located at the top of the page.
         </div>
     </div>
 
@@ -125,7 +137,9 @@
 
             e.preventDefault();
         }, { passive: false });
-    </script>
-</body>
-      </html>
-      
+
+        function loadSocialBarAd() {
+            const script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = '//pl25102696.effectiveratecpm.com/b2/17/9f/b2179f738a9487c76a124a
+                
