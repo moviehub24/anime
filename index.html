@@ -1,75 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anime Quality Selection</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; background-color: #f4f4f4; padding: 20px; }
-        .container { max-width: 500px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin: auto; }
-        img { width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; }
-        .button-container { display: none; }
-        .button { display: block; padding: 10px; margin: 10px 0; text-decoration: none; color: white; border-radius: 5px; }
-        .button-480p { background: #007bff; }
-        .button-720p { background: #28a745; }
-        .button-1080p { background: #dc3545; }
-        .timer { font-size: 24px; margin: 20px; font-weight: bold; color: #007bff; }
-    </style>
+<title>Movie Hub Anime</title>
 </head>
 <body>
-    <div class="container">
-        <h2>Select Anime Quality</h2>
-        <img id="animeImg" src="placeholder.jpeg" alt="Anime Poster">
-        <p id="animeTitle"></p>
-        <div id="timer" class="timer">10</div>
-        <div class="button-container">
-            <a id="btn480p" class="button button-480p" href="#" target="_blank">480p</a>
-            <a id="btn720p" class="button button-720p" href="#" target="_blank">720p</a>
-            <a id="btn1080p" class="button button-1080p" href="#" target="_blank">1080p</a>
-        </div>
-    </div>
 
-    <script>
-        function getQueryParam(param) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(param);
-        }
+<script>
+  // Extract parameters from the URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const userId = urlParams.get('userId');
+  const animeName = urlParams.get('anime');
+  const start = urlParams.get('start');
+  const end = urlParams.get('end');
 
-        const animeParam = getQueryParam("anime");
-        const userId = getQueryParam("userId"); // Capture user ID
-        const telegramBotUsername = "data1storage_bot";  // Your bot username
+  // Function to create Telegram link with resolution
+  function createTelegramLink(resolution) {
+    return `https://t.me/data1storage_bot?start=${animeName}_${start}_${end}_${resolution}`;
+  }
 
-        if (animeParam) {
-            document.getElementById("animeTitle").textContent = `Selected: ${animeParam.replace(/_/g, " ")}`;
-            
-            // Generate quality selection links
-            document.getElementById("btn480p").href = `https://t.me/${telegramBotUsername}?start=${encodeURIComponent(animeParam + "_480p")}`;
-            document.getElementById("btn720p").href = `https://t.me/${telegramBotUsername}?start=${encodeURIComponent(animeParam + "_720p")}`;
-            document.getElementById("btn1080p").href = `https://t.me/${telegramBotUsername}?start=${encodeURIComponent(animeParam + "_1080p")}`;
+  // Create buttons with dynamic links
+  const button480p = document.createElement('a');
+  button480p.href = createTelegramLink('480p');
+  button480p.textContent = '480p';
+  button480p.style.margin = '10px';//add some space between the buttons
 
-            // Image handling
-            const imageUrl = `${animeParam}.jpeg`;
-            const imgElement = document.getElementById("animeImg");
-            imgElement.src = imageUrl;
-            imgElement.onerror = function() { imgElement.src = "placeholder.jpeg"; };
-        } else {
-            document.getElementById("animeTitle").textContent = "❌ No anime selected!";
-        }
+  const button720p = document.createElement('a');
+  button720p.href = createTelegramLink('720p');
+  button720p.textContent = '720p';
+  button720p.style.margin = '10px';
 
-        let timeLeft = 10;
-        const timerElement = document.getElementById("timer");
-        const buttonContainer = document.querySelector(".button-container");
+  const button1080p = document.createElement('a');
+  button1080p.href = createTelegramLink('1080p');
+  button1080p.textContent = '1080p';
+  button1080p.style.margin = '10px';
 
-        const countdown = setInterval(() => {
-            timerElement.textContent = `Wait ${timeLeft} seconds...`;
-            timeLeft--;
+  // Append buttons to the body
+  document.body.appendChild(button480p);
+  document.body.appendChild(button720p);
+  document.body.appendChild(button1080p);
 
-            if (timeLeft < 0) {
-                clearInterval(countdown);
-                timerElement.style.display = "none";
-                buttonContainer.style.display = "block";
-            }
-        }, 1000);
-    </script>
+</script>
+
 </body>
 </html>
