@@ -3,6 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Quality</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        .btn {
+            display: block;
+            width: 200px;
+            margin: 10px auto;
+            padding: 15px;
+            font-size: 18px;
+            text-decoration: none;
+            color: white;
+            border-radius: 5px;
+        }
+        .btn-480p { background: #3498db; }
+        .btn-720p { background: #2ecc71; }
+        .btn-1080p { background: #e74c3c; }
+    </style>
+</head>
+<body>
+
+    <h2>🎥 Select Video Quality</h2>
+    <p>Choose the quality of the episodes you want to watch.</p>
+
+    <script>
+        // Extract userId and movie name from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get("userId");
+        const movie = urlParams.get("movie");
+
+        if (!userId || !movie) {
+            document.body.innerHTML = "<h2>Error: Missing parameters!</h2>";
+        } else {
+            document.body.innerHTML += `
+                <a class="btn btn-480p" href="https://t.me/data1storage_bot?start=${encodeURIComponent(anime)}_480p">🔹 Watch in 480p</a>
+                <a class="btn btn-720p" href="https://t.me/data1storage_bot?start=${encodeURIComponent(anime)}_720p">🔹 Watch in 720p</a>
+                <a class="btn btn-1080p" href="https://t.me/data1storage_bot?start=${encodeURIComponent(anime)}_1080p">🔹 Watch in 1080p</a>
+            `;
+        }
+    </script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Quality Selection</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; flex-direction: column; min-height: 100vh; background-color: #f4f4f4; margin: 0; padding: 20px; overflow-y: auto; scroll-behavior: smooth; }
